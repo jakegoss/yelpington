@@ -9,18 +9,55 @@
 
 
 
+  <script>
 
-  
-<script>
+    let myRestaurant
 
-fetch('mr-Mikes.json')
-  .then(function(response) {
-    return response.text();
-  })
-  .then(function(myText) {
-    console.log(myText);
-  });
-</script>
+    params = new URLSearchParams(document.location.search.slice(1));
+    let name = params.get("name");
+
+    console.log(params)
+
+    fetch(name + '.json')
+      .then(function (response) {
+        myRestaurant = response
+        console.log(response)
+        return response.text();
+      })
+      .then(function (myText) {
+        // console.log(myText);
+        var js_object = JSON.parse(myText);
+        console.log(js_object)
+
+        let body = document.querySelector("body")
+        let innerString = ""
+
+        body.innerHTML = "<p id='title'>" + js_object["name"] + "</p>"
+
+        body.innerHTML += "<p id='address'>" + js_object["address"] + "</p>"
+
+        body.innerHTML += "<p id='phone'>" + js_object["phone number"] + "</p>"
+
+        body.innerHTML += "<p id='hours'>" + js_object["hours"] + "</p>"
+
+        body.innerHTML += "<p id='website'>" + js_object["website"] + "</p>"
+
+        body.innerHTML += "<p id='notes'>" + js_object["notes"] + "</p>"
+
+
+
+        // mapString = "https://nominatim.openstreetmap.org/search/?q="+js_object["address"]
+
+        mapString = "https://nominatim.openstreetmap.org/search/?q=182%20Main%20St.,Burlington,VT"
+        console.log(mapString)
+
+        body.innerHTML += "<iframe id='inlineFrameExample' title='Inline Frame Example' width='300' height='200' src= " + mapString + "></iframe>"
+
+        
+
+
+      });
+  </script>
 
 </body>
 
