@@ -46,13 +46,32 @@
 
 
 
-        // mapString = "https://nominatim.openstreetmap.org/search/?q="+js_object["address"]
 
-        mapString = "https://nominatim.openstreetmap.org/search/?q=182%20Main%20St.,Burlington,VT"
-        console.log(mapString)
+        spaceRegex = /\s/g
+        urlAddressString = js_object["address"].replace(spaceRegex, "%20")
+        fetchMapString = "https://nominatim.openstreetmap.org/search/?q=" + urlAddressString + "&format=json"
 
-        body.innerHTML += "<iframe id='inlineFrameExample' title='Inline Frame Example' width='300' height='200' src= " + mapString + "></iframe>"
 
+        console.log("String is " + urlAddressString)
+
+        fetch(fetchMapString)
+          .then(function (response) {
+            myRestaurant = response
+            console.log(response)
+            return response.text();
+          }).then(function (myMapSon) {
+            // console.log(myText);
+            var js_object = JSON.parse(myMapSon);
+
+            let left = js_object[0]["boundingbox"][0]
+            let bottom = js_object[0]["boundingbox"][1]
+            let right = js_object[0]["boundingbox"][2]
+            let top = js_object[0]["boundingbox"][3]
+
+            console.log(right,bottom,top,left)
+            body.innerHTML += "<iframe id='inlineFrameExample' title='Inline Frame Example'width='300' height='200'src=https://www.openstreetmap.org/export/embed.html?bbox=" + right + "," + bottom + "," + top + "," + left + "&layer=mapnik></iframe>"
+          })
+          
         
 
 

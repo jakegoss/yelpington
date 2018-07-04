@@ -8,25 +8,5 @@
   "notes": [
     "The greatest pizza around! call 864-0072 or order online for free delivery!"
   ],
-  "map": "https://www.openstreetmap.org/export/embed.html?bbox=-73.2130900,44.4749000,-73.2102500,44.4772200&layer=mapnik",
-  "map2": [
-    {
-      "place_id": "213579598",
-      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https:\/\/osm.org\/copyright",
-      "osm_type": "way",
-      "osm_id": "342147125",
-      "boundingbox": [
-        "44.4760113125",
-        "44.4761113125",
-        "-73.211725375",
-        "-73.211625375"
-      ],
-      "lat": "44.4760613125",
-      "lon": "-73.211675375",
-      "display_name": "182, Main Street, Downtown, Burlington, Chittenden County, Vermont, 05401, United States of America",
-      "class": "place",
-      "type": "house",
-      "importance": 0.42025
-    }
-  ]
+  "map": "https://www.openstreetmap.org/export/embed.html?bbox=-73.2130900,44.4749000,-73.2102500,44.4772200&layer=mapnik"
 }
