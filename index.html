@@ -2,67 +2,82 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <link type="text/css" rel="stylesheet" href="index_style.css">
+
 </head>
 
-<body>
-    <h1 class="title">Hungry in Burlington?</h1>
+<body id="body">Hello
 
-    <div id="buttons">
-        <p>Mr. Mike's Pizza</p>
-        <p>August First Bakery</p>
-        <p>New Moon Cafe</p>
-        <!-- <p></p>
-    <p></p> -->
-    </div>
-    <div>
-        <script>
-            let myRestaurant
-            params = new URLSearchParams(document.location.search.slice(1));
-            let name = params.get("name");
-            console.log(params)
-            fetch(name + '.json')
-                .then(function (response) {
-                    myRestaurant = response
-                    console.log(response)
-                    return response.text();
-                })
-                .then(function (myText) {
-                    // console.log(myText);
-                    var js_object = JSON.parse(myText);
-                    console.log(js_object)
-                    let body = document.querySelector("body")
-                    let innerString = ""
-                    body.innerHTML = "<p id='title'>" + js_object["name"] + "</p>"
-                    body.innerHTML += "<p id='address'>" + js_object["address"] + "</p>"
-                    body.innerHTML += "<p id='phone'>" + js_object["phone number"] + "</p>"
-                    body.innerHTML += "<p id='hours'>" + js_object["hours"] + "</p>"
-                    body.innerHTML += "<p id='website'>" + js_object["website"] + "</p>"
-                    body.innerHTML += "<p id='notes'>" + js_object["notes"] + "</p>"
-                    spaceRegex = /\s/g
-                    urlAddressString = js_object["address"].replace(spaceRegex, "%20")
-                    fetchMapString = "https://nominatim.openstreetmap.org/search/?q=" + urlAddressString + "&format=json"
-                    console.log("String is " + urlAddressString)
-                    fetch(fetchMapString)
-                        .then(function (response) {
-                            myRestaurant = response
-                            console.log(response)
-                            return response.text();
-                        }).then(function (myMapSon) {
-                            // console.log(myText);
-                            var js_object = JSON.parse(myMapSon);
-                            let left = js_object[0]["boundingbox"][0]
-                            let bottom = js_object[0]["boundingbox"][1]
-                            let right = js_object[0]["boundingbox"][2]
-                            let top = js_object[0]["boundingbox"][3]
-                            console.log(right, bottom, top, left)
-                            body.innerHTML += "<iframe id='inlineFrameExample' title='Inline Frame Example'width='300' height='200'src=https://www.openstreetmap.org/export/embed.html?bbox=" + right + "," + bottom + "," + top + "," + left + "&layer=mapnik></iframe>"
-                        })
 
-                });
-        </script>
-    </div>
+
+  <script>
+
+    let myRestaurant
+
+    params = new URLSearchParams(document.location.search.slice(1));
+    let name = params.get("name");
+
+    console.log(params)
+
+    fetch(name + '.json')
+      .then(function (response) {
+        myRestaurant = response
+        console.log(response)
+        return response.text();
+      })
+      .then(function (myText) {
+        // console.log(myText);
+        var js_object = JSON.parse(myText);
+        console.log(js_object)
+
+        let body = document.querySelector("body")
+        let innerString = ""
+
+        body.innerHTML = "<p id='title'>" + js_object["name"] + "</p>"
+
+        body.innerHTML += "<p id='address'>" + js_object["address"] + "</p>"
+
+        body.innerHTML += "<p id='phone'>" + js_object["phone number"] + "</p>"
+
+        body.innerHTML += "<p id='hours'>" + js_object["hours"] + "</p>"
+
+        body.innerHTML += "<p id='website'>" + js_object["website"] + "</p>"
+
+        body.innerHTML += "<p id='notes'>" + js_object["notes"] + "</p>"
+
+
+
+
+        spaceRegex = /\s/g
+        urlAddressString = js_object["address"].replace(spaceRegex, "%20")
+        fetchMapString = "https://nominatim.openstreetmap.org/search/?q=" + urlAddressString + "&format=json"
+
+
+        console.log("String is " + urlAddressString)
+
+        fetch(fetchMapString)
+          .then(function (response) {
+            myRestaurant = response
+            console.log(response)
+            return response.text();
+          }).then(function (myMapSon) {
+            // console.log(myText);
+            var js_object = JSON.parse(myMapSon);
+
+            let left = js_object[0]["boundingbox"][0]
+            let bottom = js_object[0]["boundingbox"][1]
+            let right = js_object[0]["boundingbox"][2]
+            let top = js_object[0]["boundingbox"][3]
+
+            console.log(right,bottom,top,left)
+            body.innerHTML += "<iframe id='inlineFrameExample' title='Inline Frame Example'width='300' height='200'src=https://www.openstreetmap.org/export/embed.html?bbox=" + right + "," + bottom + "," + top + "," + left + "&layer=mapnik></iframe>"
+          })
+          
+        
+
+
+      });
+  </script>
+
 </body>
 
 </html>
