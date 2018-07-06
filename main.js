@@ -59,6 +59,7 @@ function populateCity(name) {
             console.log(js_object)
 
             let body = document.querySelector("body")
+            let markedJSON
             let innerString = ""
             body.innerHTML = "<div><a href=" + "/" + ">HOME</a></div>"
             body.innerHTML += "<p id='title'>" + js_object["name"] + "</p>"
@@ -66,7 +67,9 @@ function populateCity(name) {
             body.innerHTML += "<p id='phone'>" + js_object["phone number"] + "</p>"
             body.innerHTML += "<p id='hours'>" + js_object["hours"] + "</p>"
             body.innerHTML += "<p id='website'>" + js_object["website"] + "</p>"
-            body.innerHTML += "<p id='notes'>" + js_object["notes"] + "</p>"
+
+            markedJSON = marked(js_object["notes"].toString())
+            body.innerHTML += "<p id='notes'>" + markedJSON + "</p>"
 
             spaceRegex = /\s/g
             urlAddressString = js_object["address"].replace(spaceRegex, "%20")
