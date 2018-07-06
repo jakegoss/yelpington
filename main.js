@@ -4,10 +4,10 @@ var filelist = [
     'church-street-tavern.json',
     'city-market.json',
     'mr-mikes.json',
-    'new-moon.json'
+    'new-moon.json',
 ];
 var extension = 'json';
-let body = document.querySelector("body")
+let listDiv = document.getElementById("listDiv")
 
 
 printJSONs(filelist)
@@ -20,10 +20,20 @@ function printJSONs(filelist) {
     console.log(x);
 
     for (i = 0; i < x.length; i++) {
-        x[i] = x[i].replace(".json", "")
-        let htmlString = "<p id='title' onclick= " + "clickRestaurant(" + "'" + x[i] + "'" + ")>" + x[i] + "</p>"
-        console.log(htmlString)
-        body.innerHTML += htmlString
+        fetch(filelist[i])
+            .then(function (response) {
+                console.log(response)
+                return response.text();
+            })
+            .then(function (myText) {
+                // console.log(myText);
+                var js_object = JSON.parse(myText);
+                console.log(js_object)
+
+                let htmlString = "<p class='homeList' onclick= " + "clickRestaurant(" + "'" + js_object["id"] + "'" + ")>" + js_object["name"] + "</p>"
+                console.log(htmlString)
+                listDiv.innerHTML += htmlString
+            })
     }
 }
 
@@ -66,10 +76,12 @@ function populateCity(name) {
             body.innerHTML += "<p id='address'>" + js_object["address"] + "</p>"
             body.innerHTML += "<p id='phone'>" + js_object["phone number"] + "</p>"
             body.innerHTML += "<p id='hours'>" + js_object["hours"] + "</p>"
-            body.innerHTML += "<p id='website'>" + js_object["website"] + "</p>"
+            if (js_object["website"] != undefined) { body.innerHTML += "<p id='website'>" + js_object["website"] + "</p>" }
 
-            markedJSON = marked(js_object["notes"].toString())
-            body.innerHTML += "<p id='notes'>" + markedJSON + "</p>"
+            for (i=0; i<js_object['notes'].length;i++) {
+                markedJSON = marked(js_object['notes'][i].toString())
+                body.innerHTML += '<p id=‘notes’>' + markedJSON + '</p>'
+                }
 
             spaceRegex = /\s/g
             urlAddressString = js_object["address"].replace(spaceRegex, "%20")

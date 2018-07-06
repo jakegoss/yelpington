@@ -1,8 +1,48 @@
 body {
-    background-color: darksalmon;
-    /* margin: 0; */
+	background-color: darksalmon;
+	margin: 2em;
 }
-
+.title {
+	text-align: center;
+	font-size: 3.5em;
+	font-family: PoiretOne-Regular;
+	text-shadow: 3px 2px 3px teal;
+	color: whitesmoke;
+	margin: 0%;
+}
+#corePage {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+#mapdiv {
+	height: 400px;
+	width: 400px;
+	border: 2px solid teal;
+	border-radius: 10%;
+	overflow: hidden;
+	-webkit-box-reflect: below 8px -webkit-gradient(linear, right top, right bottom, from(transparent), color-stop(40%, transparent), to(rgba(255, 255, 255, 0.219)));
+}
+#listDiv {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	overflow: scroll;
+	margin-left: 1em;
+	padding-right: 1em;
+	border-right: 2px solid teal;
+	max-height: 400px;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+}
+.homeList {
+	cursor: pointer;
+}
+body {
+    background-color: darksalmon;
+    margin: 2em;
+}
 .title {
     text-align: center;
     font-size: 3.5em;
@@ -11,11 +51,32 @@ body {
     color: whitesmoke;
     margin: 0%;
 }
-#buttons {
+#corePage {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#mapdiv {
+    height: 400px;
+    width: 400px;
+    border: 2px solid teal;
+    border-radius: 10%;
+    overflow: hidden;
+    -webkit-box-reflect: below 8px -webkit-gradient(linear, right top, right bottom, from(transparent), color-stop(40%, transparent), to(rgba(255, 255, 255, 0.219)));
+}
+#listDiv {
     display: flex;
     flex-direction: column;
     align-content: center;
-    margin-top: 2em;
-    border: 1px grey;
+    overflow: scroll;
+    margin-left: 1em;
+    padding-right: 1em;
+    border-right: 2px solid teal;
+    max-height: 400px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}
+.homeList {
+    cursor: pointer;
 }
