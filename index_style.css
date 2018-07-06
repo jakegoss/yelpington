@@ -1,9 +1,9 @@
 body {
     background-color: darksalmon;
-    margin: 0;
+    /* margin: 0; */
 }
 
-body .title {
+.title {
     text-align: center;
     font-size: 3.5em;
     font-family: PoiretOne-Regular;
